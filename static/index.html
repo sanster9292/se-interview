@@ -101,7 +101,13 @@
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 1em;
+            font-family: inherit;
             transition: border-color 0.3s;
+            resize: none;
+            min-height: 50px;
+            max-height: 150px;
+            overflow-y: auto;
+            line-height: 1.5;
         }
 
         #messageInput:focus {
@@ -200,12 +206,12 @@
         </div>
 
         <div class="input-container">
-            <input
-                type="text"
+            <textarea
                 id="messageInput"
                 placeholder="What's the weather like in Paris?"
                 autocomplete="off"
-            />
+                rows="1"
+            ></textarea>
             <button id="sendButton">Send</button>
         </div>
 
@@ -282,6 +288,7 @@
 
             addMessage(message, true);
             messageInput.value = '';
+            autoResize();
 
             try {
                 const response = await fetch('/chat', {
@@ -310,12 +317,22 @@
 
         function setExample(text) {
             messageInput.value = text;
+            autoResize();
             messageInput.focus();
         }
 
+        function autoResize() {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = messageInput.scrollHeight + 'px';
+        }
+
         sendButton.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('input', autoResize);
+
         messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 sendMessage();
             }
         });

@@ -1,0 +1,5 @@
+[openinference_instrumentor]
+crewai = openinference.instrumentation.crewai:CrewAIInstrumentor
+
+[opentelemetry_instrumentor]
+crewai = openinference.instrumentation.crewai:CrewAIInstrumentor

@@ -1,17 +1,26 @@
+import os
 from dotenv import load_dotenv
+
+# Load environment variables first
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel
 from agent import build_agent
-from phoenix.otel import register
 from pathlib import Path
+from phoenix.otel import register
+from openinference.instrumentation.langchain import LangChainInstrumentor
 
-load_dotenv()
-
+# Phoenix tracing configuration - using local Phoenix server
 tracer_provider = register(
-    project_name="travel-assistant",
-    auto_instrument=True,)
+    project_name="ai-travel-companion",
+    endpoint="http://localhost:6006/v1/traces",
+)
+
+# Instrument LangChain
+LangChainInstrumentor().instrument(tracer_provider=tracer_provider)
 
 agent = build_agent()
 

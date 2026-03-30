@@ -1,89 +1,315 @@
-# LangGraph Agent with Web Search
+# AI Travel Companion
 
-A simple LangGraph agent that can search the web using DuckDuckGo, exposed via a FastAPI server.
+An intelligent travel assistant powered by LangGraph and OpenAI that provides real-time weather forecasts and travel information through web search capabilities. Features full observability with Phoenix tracing for monitoring LLM interactions and tool usage.
 
-## Prerequisites
+## Features
 
-- Python 3.11+
-- [Poetry](https://python-poetry.org/docs/#installation)
-- OpenAI API key
+- **Weather Forecasting**: Get current weather conditions and 3-day forecasts for any location worldwide
+- **Web Search**: Access up-to-date travel information, attractions, and general knowledge
+- **Interactive Chat UI**: User-friendly web interface for conversing with the AI assistant
+- **Full Observability**: Track and analyze all LLM calls, tool usage, and conversation flows with Phoenix
 
-## Setup
+## Tools Added
 
-1. Install dependencies:
+### 1. Weather Forecast Tool (`get_weather_forecast`)
+- **Purpose**: Retrieves current weather and 3-day forecasts for any location
+- **API**: Uses Open-Meteo API (free, no authentication required)
+- **Features**:
+  - Geocoding support for location name resolution
+  - Current weather conditions (temperature, feels-like, wind speed, weather description)
+  - 3-day forecast with daily highs/lows and precipitation probability
+  - WMO weather code mapping (27 different weather conditions)
+  - Comprehensive error handling with timeout support
+  - Returns structured data in JSON format
 
+### 2. Web Search Tool (`duckduckgo_search`)
+- **Purpose**: Searches the web for current information and general knowledge
+- **Implementation**: DuckDuckGo search via LangChain Community
+- **Features**:
+  - No API key required
+  - Access to current events and up-to-date information
+  - Travel recommendations and tourist attractions
+  - General knowledge queries
+
+## Libraries and Technologies Used
+
+### Core Framework
+- **LangGraph** (`^0.2`): Agent orchestration and workflow management
+- **LangChain** (`^0.3`): LLM framework and tool integration
+- **LangChain OpenAI** (`^0.2`): OpenAI model integration
+- **LangChain Community** (`^0.3`): Community tools including DuckDuckGo search
+
+### Web Framework
+- **FastAPI** (`>=0.115`): Modern, fast web framework for the API
+- **Uvicorn** (`^0.32`): ASGI server for running the application
+- **Pydantic**: Data validation and settings management
+
+### Observability
+- **Arize Phoenix** (`^13.19.2`): LLM observability platform
+- **Arize Phoenix OTEL** (`^0.15.0`): OpenTelemetry integration for Phoenix
+- **OpenInference LangChain** (`^0.1.61`): Automatic instrumentation for LangChain
+
+### Utilities
+- **Requests** (`^2.33.0`): HTTP library for API calls
+- **Python Dotenv** (`^1.0`): Environment variable management
+- **DDGS** (`^9.0`): DuckDuckGo search implementation
+
+## Local Setup
+
+### Prerequisites
+- Python 3.11 or higher (3.11-3.13 supported)
+- [Poetry](https://python-poetry.org/docs/#installation) for dependency management
+
+### Installation Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd se-interview
+   ```
+
+2. **Install dependencies**
+   ```bash
+   poetry install
+   ```
+
+3. **Set up environment variables**
+
+   Create a `.env` file in the project root:
+   ```bash
+   OPENAI_API_KEY=your_openai_api_key_here
+   PHOENIX_API_KEY=your_phoenix_api_key_here
+   PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com
+   SERPER_API_KEY=optional_serper_key
+   ```
+
+   **Required:**
+   - `OPENAI_API_KEY`: Get from https://platform.openai.com/api-keys
+
+   **Optional:**
+   - `PHOENIX_API_KEY`: For Phoenix Cloud (or use local Phoenix server)
+   - `SERPER_API_KEY`: Alternative to DuckDuckGo (not required)
+
+4. **Start the Phoenix server** (for local observability)
+   ```bash
+   poetry run python -m phoenix.server.main serve
+   ```
+
+   Phoenix UI will be available at: **http://localhost:6006**
+
+5. **Start the application server**
+   ```bash
+   poetry run uvicorn api:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+   API will be available at: **http://localhost:8000**
+
+## How to Use the UI
+
+### Accessing the Web Interface
+
+1. Open your browser and navigate to: **http://localhost:8000**
+
+2. You'll see the AI Travel Companion chat interface with:
+   - **Chat container**: Displays conversation history
+   - **Message input**: Multi-line text area for your queries (auto-expands)
+   - **Example buttons**: Quick-start queries to try
+
+### Using the Chat Interface
+
+**Example Queries:**
+- "What's the weather like in Paris?"
+- "Will it rain in London today?"
+- "What are the top tourist attractions in Rome?"
+- "What's the weather in Barcelona and what are some things to do there?"
+
+**Response Features:**
+- **Formatted output**: Temperatures highlighted, bullet points, numbered lists
+- **Real-time updates**: Loading indicator while processing
+- **Auto-scroll**: Automatically scrolls to show latest messages
+
+### API Endpoints
+
+**Chat Endpoint:**
 ```bash
-poetry install
-```
+POST http://localhost:8000/chat
+Content-Type: application/json
 
-2. Create a `.env` file from the example:
-
-```bash
-cp .env.example .env
-```
-
-3. Add your OpenAI API key to the `.env` file:
-
-```
-OPENAI_API_KEY=your_actual_api_key
-```
-
-## Running the API
-
-Start the FastAPI server:
-
-```bash
-poetry run uvicorn api:app --reload
-```
-
-The API will be available at `http://localhost:8000`.
-
-## API Endpoints
-
-### POST /chat
-
-Send a message to the agent and receive a response.
-
-**Request:**
-
-```bash
-curl -X POST http://localhost:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message": "What is the latest news about AI?"}'
-```
-
-**Response:**
-
-```json
 {
-  "response": "Based on my search, here are the latest developments in AI..."
+  "message": "What's the weather in Tokyo?"
 }
 ```
 
-### GET /health
-
-Health check endpoint.
-
+**Health Check:**
 ```bash
-curl http://localhost:8000/health
+GET http://localhost:8000/health
 ```
 
+**Web UI:**
+```bash
+GET http://localhost:8000/
+```
+
+## How to Review the Phoenix UI
+
+Phoenix provides comprehensive observability for your AI agent, allowing you to trace and analyze every interaction.
+
+### Accessing Phoenix
+
+**Local Phoenix Server:**
+- URL: **http://localhost:6006**
+- Automatically captures traces when the application runs
+
+**Phoenix Cloud:**
+- URL: **https://app.phoenix.arize.com**
+- Requires API key configuration
+
+### Navigating Phoenix
+
+1. **Projects View**
+   - Look for the **"ai-travel-companion"** project
+   - Shows overview of all traces and spans
+
+2. **Traces Tab**
+   - View all agent interactions chronologically
+   - Each row represents a complete conversation turn
+   - Metrics include: latency, token usage, tool calls
+
+3. **Trace Details**
+   - Click any trace to see detailed breakdown
+   - **Spans**: Hierarchical view of operations
+     - LLM calls (chat completions)
+     - Tool executions (weather API, web search)
+     - Agent decision points
+   - **Attributes**: Input/output data for each span
+   - **Timeline**: Visual representation of operation timing
+
+### Key Metrics to Monitor
+
+**Performance:**
+- **Latency**: Total time for agent response
+- **Token Usage**: Prompt and completion tokens
+- **Tool Calls**: Number and type of tools used
+
+**Quality:**
+- **Tool Selection**: Verify correct tool usage
+- **Error Rates**: Track failed tool calls or API errors
+- **Response Quality**: Review LLM inputs/outputs
+
+### Using Phoenix for Debugging
+
+**Trace a Specific Query:**
+1. Send a query through the UI or API
+2. Go to Phoenix UI → Traces
+3. Find the trace by timestamp or input text
+4. Expand to see full execution flow
+
+**Analyze Tool Usage:**
+1. Filter traces by span kind: "TOOL"
+2. Review tool inputs and outputs
+3. Check for errors or unexpected behavior
+
+**Monitor LLM Calls:**
+1. Filter by span kind: "LLM"
+2. Review prompts and completions
+3. Analyze token usage and costs
+
+### Running Test Queries
+
+Generate sample traces for analysis:
+
+```bash
+poetry run python run_test_queries.py
+```
+
+This script runs 15 diverse queries covering:
+- Weather queries (various cities)
+- Web search queries (travel info, facts)
+- Edge cases (invalid locations, ambiguous queries)
+- User frustration scenarios
+
+All traces will appear in Phoenix for analysis.
 
 ## Project Structure
 
 ```
 se-interview/
-├── pyproject.toml   # Poetry dependencies
-├── .env.example     # Environment variable template
-├── README.md        # This file
-├── agent.py         # LangGraph agent implementation
-└── api.py           # FastAPI server
+├── agent.py                 # LangGraph agent definition
+├── tools.py                 # Custom tools (weather forecast)
+├── api.py                   # FastAPI application
+├── static/
+│   └── index.html          # Chat UI
+├── run_test_queries.py     # Test query script
+├── .env                    # Environment variables
+├── pyproject.toml          # Poetry dependencies
+└── README.md               # This file
 ```
 
-## How It Works
+## Development
 
-1. The agent receives a user message via the `/chat` endpoint
-2. It calls GPT-4o with the message and available tools (DuckDuckGo search)
-3. If the LLM decides to search, it executes the search and feeds results back
-4. The loop continues until the LLM provides a final response
-5. The response is returned to the user
+### Adding New Tools
+
+1. Define the tool in `tools.py`:
+   ```python
+   from langchain_core.tools import tool
+
+   @tool("tool_name")
+   def your_tool(param: str) -> dict:
+       """Tool description."""
+       # Implementation
+       return {"result": "data"}
+   ```
+
+2. Register in `agent.py`:
+   ```python
+   from tools import your_tool
+
+   tools = [duckduckgo_search, get_weather_forecast, your_tool]
+   ```
+
+3. Update system prompt to describe when to use the tool
+
+### Customizing the UI
+
+- Edit `static/index.html` for UI changes
+- Modify CSS in `<style>` section
+- Update JavaScript for behavior changes
+
+### Phoenix Configuration
+
+**For Local Phoenix:**
+- Endpoint: `http://localhost:6006/v1/traces`
+- No authentication required
+
+**For Phoenix Cloud:**
+- Endpoint: `https://app.phoenix.arize.com/v1/traces`
+- Requires `PHOENIX_API_KEY` in `.env`
+
+## Troubleshooting
+
+**Port Already in Use:**
+```bash
+# Kill processes on port 8000
+lsof -i :8000
+kill -9 <PID>
+```
+
+**Phoenix Not Showing Traces:**
+- Verify Phoenix server is running on port 6006
+- Check Phoenix endpoint in `api.py` matches your setup
+- Ensure no 401 authentication errors in server logs
+
+**Weather API Errors:**
+- Check internet connectivity
+- Verify location name is valid
+- Review error message in response
+
+## License
+
+This project is for educational and demonstration purposes.
+
+## Acknowledgments
+
+- Weather data provided by [Open-Meteo](https://open-meteo.com/)
+- Observability powered by [Arize Phoenix](https://phoenix.arize.com/)
+- LLM framework by [LangChain](https://langchain.com/)
