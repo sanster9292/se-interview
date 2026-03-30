@@ -1,0 +1,101 @@
+input,output,status,label,explanation,exceptions,execution_status,execution_seconds,prompt_tokens,completion_tokens,total_tokens
+What's the weather like in Paris?,"The current weather in Paris is partly cloudy with a temperature of 11.9°C, but it feels like 7.0°C due to the wind speed of 19.6 km/h.
+
+Here's the 3-day weather forecast for Paris:
+
+- **March 30, 2026**: Maximum temperature of 13.1°C and a minimum of 9.1°C. There is a 75% chance of slight rain.
+- **March 31, 2026**: Maximum temperature of 12.5°C and a minimum of 7.5°C. There is a 20% chance of slight rain.
+- **April 1, 2026**: Maximum temperature of 13.6°C and a minimum of 9.7°C. There is a 20% chance of slight rain.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.002871990203857422,,,
+Will it rain in London today?,"Today in London, the weather is mainly clear with a maximum temperature of 11.8°C. The probability of precipitation is low at 6%, so it is unlikely to rain today.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0029380321502685547,,,
+What's the temperature in Tokyo?,"The current temperature in Tokyo is 15.4°C, with an apparent temperature of 15.2°C. The weather is mainly clear, and the wind speed is 9.2 km/h.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0029611587524414062,,,
+Is it sunny in New York?,"Yes, it is currently sunny in New York with a clear sky. The temperature is around 20.5°C, but it feels like 17.0°C due to the wind speed of 24.3 km/h.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.003026247024536133,,,
+What's the weather forecast for Berlin?,"The current weather in Berlin is overcast with a temperature of 6.9°C, and it feels like 4.3°C. The wind speed is 5.9 km/h.
+
+Here's the 3-day weather forecast for Berlin:
+
+- **March 30, 2026**: Maximum temperature of 8.6°C and a minimum of 4.6°C. There is a 100% chance of slight rain showers.
+- **March 31, 2026**: Maximum temperature of 9.1°C and a minimum of 2.9°C. There is an 85% chance of slight rain showers.
+- **April 1, 2026**: Maximum temperature of 11.3°C and a minimum of 1.5°C. There is a 5% chance of fog.
+
+Please let me know if you need more information!",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.00308990478515625,,,
+What is the capital of France?,The capital of France is Paris.,success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.00315093994140625,,,
+Who is the current president of the United States?,"The current president of the United States is Donald Trump, who assumed office on January 20, 2025.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0032091140747070312,,,
+What are the top tourist attractions in Rome?,"Rome, known as the Eternal City, is rich with history and culture, offering numerous attractions for tourists. Here are some of the top tourist attractions in Rome:
+
+1. **Colosseum**: This iconic symbol of Imperial Rome is a must-visit. It's the largest ancient amphitheater ever built and still stands as a testament to Roman engineering.
+
+2. **Vatican City**: Home to St. Peter's Basilica, the Vatican Museums, and the Sistine Chapel, Vatican City is a spiritual and cultural center.
+
+3. **Trevi Fountain**: One of the most famous fountains in the world, it's a tradition to throw a coin into the fountain to ensure a return to Rome.
+
+4. **Pantheon**: A former Roman temple, now a church, the Pantheon is renowned for its large dome and ancient architecture.
+
+5. **Roman Forum**: Once the center of Roman public life, the Forum is a sprawling ruin of architectural fragments and archaeological excavations.
+
+6. **Piazza Navona**: Known for its beautiful Baroque architecture, this lively square is filled with restaurants, street artists, and fountains.
+
+7. **Spanish Steps**: A monumental stairway of 135 steps, the Spanish Steps are a popular spot for tourists to relax and enjoy the atmosphere.
+
+8. **Borghese Gallery and Gardens**: This art gallery houses a substantial collection of paintings, sculptures, and antiquities, set in beautiful gardens.
+
+9. **Castel Sant'Angelo**: Originally built as a mausoleum for Emperor Hadrian, it has served as a fortress and papal residence.
+
+10. **Campo de' Fiori**: A vibrant market by day and a bustling social scene by night, it's a great place to experience local life.
+
+These attractions offer a glimpse into Rome's rich history and vibrant culture, making it a captivating destination for travelers.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.003287076950073242,,,
+What's the weather in Barcelona and what are some things to do there?,"### Current Weather in Barcelona
+- **Temperature:** 18.3°C (Feels like 16.3°C)
+- **Condition:** Partly cloudy
+- **Wind Speed:** 6.0 km/h
+
+#### 3-Day Weather Forecast
+- **March 30:** Max 19.3°C, Min 6.5°C, Overcast
+- **March 31:** Max 15.7°C, Min 10.9°C, Overcast, 10% chance of precipitation
+- **April 1:** Max 16.6°C, Min 8.6°C, Rain showers expected, 35% chance of precipitation
+
+### Things to Do in Barcelona
+Barcelona is a vibrant city with a rich cultural heritage and plenty of attractions. Here are some highlights:
+
+1. **Antoni Gaudí's Architectural Works:** Visit the iconic Sagrada Família, Park Güell, and Casa Batlló to experience Gaudí's unique architectural style.
+
+2. **La Rambla:** Stroll down this famous street, which is bustling with shops, cafes, and street performers.
+
+3. **La Boqueria Market:** Explore this lively market for a taste of local cuisine and fresh produce.
+
+4. **Museu Maritim de Barcelona:** Discover maritime history in this medieval building near the sea.
+
+5. **Placa de Catalunya:** A central square that's a great starting point for exploring the city.
+
+6. **MACBA (Barcelona Museum of Contemporary Art):** Enjoy contemporary art exhibitions in this modern museum.
+
+Barcelona also offers a vibrant nightlife, world-class cultural institutions, and an amazing food scene, making it a must-visit destination.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.003348827362060547,,,
+Is it a good time to visit Sydney based on the weather?,"The current weather in Sydney is partly cloudy with a temperature of 15.1°C, and it feels like 15.8°C. The wind speed is quite low at 1.8 km/h.
+
+Here's the 3-day weather forecast for Sydney:
+
+- **March 31, 2026**: Maximum temperature of 26.1°C and a minimum of 12.5°C. The weather is expected to be foggy with no precipitation.
+- **April 1, 2026**: Maximum temperature of 27.3°C and a minimum of 14.4°C. The weather will remain foggy with no precipitation.
+- **April 2, 2026**: Maximum temperature of 27.7°C and a minimum of 15.6°C. Foggy conditions will continue with no precipitation expected.
+
+Overall, the weather seems quite pleasant with warm temperatures and no rain forecasted. However, be prepared for foggy conditions. If you enjoy warm weather and don't mind some fog, it could be a good time to visit Sydney.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.003409147262573242,,,
+What's the weather in an invalid location xyz123?,"It seems that ""xyz123"" is not a valid location, and I couldn't retrieve the weather information for it. Please provide a valid location name or check for any typos.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0034661293029785156,,,
+Tell me about quantum physics,"Quantum physics, also known as quantum mechanics or quantum theory, is a fundamental branch of physics that deals with the behavior of matter and energy at the smallest scales, typically at the level of atoms and subatomic particles. Here are some key concepts and principles of quantum physics:
+
+1. **Wave-Particle Duality**: Quantum objects, such as electrons and photons, exhibit both wave-like and particle-like properties. This duality is famously demonstrated in the double-slit experiment, where particles like electrons create an interference pattern, characteristic of waves, when not observed, but act like particles when observed.
+
+2. **Quantization**: Energy, charge, and other quantities are quantized, meaning they can only take on discrete values. For example, electrons in an atom can only occupy certain energy levels.
+
+3. **Uncertainty Principle**: Formulated by Werner Heisenberg, this principle states that certain pairs of physical properties, like position and momentum, cannot be simultaneously measured with arbitrary precision. The more accurately one property is measured, the less accurately the other can be known.
+
+4. **Superposition**: Quantum systems can exist in multiple states at once until they are measured. This is famously illustrated by Schrödinger's cat thought experiment, where a cat in a box is simultaneously alive and dead until observed.
+
+5. **Entanglement**: Particles can become entangled, meaning the state of one particle is directly related to the state of another, no matter the distance between them. Changes to one particle instantly affect the other, a phenomenon that Albert Einstein referred to as ""spooky action at a distance.""
+
+6. **Quantum Tunneling**: Particles can pass through potential barriers that they seemingly shouldn't be able to, due to their wave-like properties. This is a key principle in technologies like tunnel diodes and nuclear fusion.
+
+7. **Quantum Computing**: Utilizes the principles of superposition and entanglement to perform computations much more efficiently than classical computers for certain tasks. Quantum bits, or qubits, can represent both 0 and 1 simultaneously, allowing for parallel processing.
+
+Quantum physics has profound implications for our understanding of the universe and has led to the development of many modern technologies, including semiconductors, lasers, and MRI machines. It challenges classical intuitions about how the world works and continues to be a rich field of research and discovery.",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0035212039947509766,,,
+What's 2 + 2?,2 + 2 equals 4.,success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.004887104034423828,,,
+weather,Could you please specify the location for which you would like to know the weather?,success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.00495600700378418,,,
+Tell me everything about everything,"""Everything about everything"" is quite a broad request! Could you narrow it down to a specific topic or area of interest? For example, are you interested in learning about a particular subject, current events, a specific location, or something else? Let me know how I can assist you better!",success,,,"['PhoenixTemplateMappingError(""Missing template variable: \'conversation\'"")']",MISSING INPUT,0.0050220489501953125,,,

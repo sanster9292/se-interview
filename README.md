@@ -164,56 +164,6 @@ Phoenix provides comprehensive observability for your AI agent, allowing you to 
 - URL: **https://app.phoenix.arize.com**
 - Requires API key configuration
 
-### Navigating Phoenix
-
-1. **Projects View**
-   - Look for the **"ai-travel-companion"** project
-   - Shows overview of all traces and spans
-
-2. **Traces Tab**
-   - View all agent interactions chronologically
-   - Each row represents a complete conversation turn
-   - Metrics include: latency, token usage, tool calls
-
-3. **Trace Details**
-   - Click any trace to see detailed breakdown
-   - **Spans**: Hierarchical view of operations
-     - LLM calls (chat completions)
-     - Tool executions (weather API, web search)
-     - Agent decision points
-   - **Attributes**: Input/output data for each span
-   - **Timeline**: Visual representation of operation timing
-
-### Key Metrics to Monitor
-
-**Performance:**
-- **Latency**: Total time for agent response
-- **Token Usage**: Prompt and completion tokens
-- **Tool Calls**: Number and type of tools used
-
-**Quality:**
-- **Tool Selection**: Verify correct tool usage
-- **Error Rates**: Track failed tool calls or API errors
-- **Response Quality**: Review LLM inputs/outputs
-
-### Using Phoenix for Debugging
-
-**Trace a Specific Query:**
-1. Send a query through the UI or API
-2. Go to Phoenix UI → Traces
-3. Find the trace by timestamp or input text
-4. Expand to see full execution flow
-
-**Analyze Tool Usage:**
-1. Filter traces by span kind: "TOOL"
-2. Review tool inputs and outputs
-3. Check for errors or unexpected behavior
-
-**Monitor LLM Calls:**
-1. Filter by span kind: "LLM"
-2. Review prompts and completions
-3. Analyze token usage and costs
-
 ### Running Test Queries
 
 Generate sample traces for analysis:
@@ -230,19 +180,36 @@ This script runs 15 diverse queries covering:
 
 All traces will appear in Phoenix for analysis.
 
+## User Frustration Analysis
+
+Analyze conversation quality using GPT-4 as a judge to detect user frustration.
+
+**Run the Dashboard:**
+```bash
+./venv/bin/python frustration_dashboard.py
+```
+
+Open http://localhost:8080 and click "Run Frustration Analysis" to:
+- Test 15 queries against your agent
+- Get GPT-4 analysis of each conversation
+- See frustration rate with explanations
+- View example frustrated scenarios
+
 ## Project Structure
 
 ```
 se-interview/
-├── agent.py                 # LangGraph agent definition
-├── tools.py                 # Custom tools (weather forecast)
-├── api.py                   # FastAPI application
+├── agent.py                      # LangGraph agent definition
+├── tools.py                      # Custom tools (weather forecast)
+├── api.py                        # FastAPI application
 ├── static/
-│   └── index.html          # Chat UI
-├── run_test_queries.py     # Test query script
-├── .env                    # Environment variables
-├── pyproject.toml          # Poetry dependencies
-└── README.md               # This file
+│   └── index.html               # Chat UI
+├── run_test_queries.py          # Test query script
+├── frustration_dashboard.py     # Frustration analysis UI
+├── simple_frustration_analysis.py  # CLI frustration analysis
+├── .env                         # Environment variables
+├── pyproject.toml               # Poetry dependencies
+└── README.md                    # This file
 ```
 
 ## Development
